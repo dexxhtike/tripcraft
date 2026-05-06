@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trip Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="navbar">
+        <a class="brand" href="index.html">TripCraft</a>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="planner.html">Planner</a>
+          <a href="destinations.html">Destinations</a>
+          <a href="contact.html">Contact</a>
+          <a class="admin-only hidden" href="admin-dashboard.html">Admin</a>
+        </div>
+        <div class="nav-auth">
+          <a class="button secondary nav-button auth-guest" href="login.html">Log In</a>
+          <a class="button primary nav-button auth-guest" href="register.html">Sign Up</a>
+          <span class="auth-user hidden" id="nav-user"></span>
+          <button class="button secondary nav-button auth-user hidden" id="logout-button" type="button">Log Out</button>
+        </div>
+      </nav>
+
+      <section class="hero-content">
+        <div class="hero-copy">
+          <p class="eyebrow">University Final Project</p>
+          <h1>Plan memorable trips with a simple smart guide.</h1>
+          <p class="hero-text">
+            TripCraft helps users explore destinations, organize travel plans,
+            and manage trip ideas in one easy website.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="planner.html">Start Planning</a>
+            <a class="button secondary" href="destinations.html">View Destinations</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <p class="card-label">What You Can Do</p>
+          <h2>Trip planning made easier</h2>
+          <ul>
+            <li>Discover travel destinations</li>
+            <li>Create a personal trip plan</li>
+            <li>Log in to manage your planning page</li>
+          </ul>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Quick Overview</p>
+          <h2>A brief introduction to the project</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Explore</h3>
+            <p>Browse destination ideas and discover places to visit.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Plan</h3>
+            <p>Create a trip schedule with budget and itinerary support.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Manage</h3>
+            <p>Use your account pages to log in and access the planner.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

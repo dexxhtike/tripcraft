@@ -1,0 +1,44 @@
+USE my_database;
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('user', 'admin') NOT NULL DEFAULT 'user',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS trips (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    destination VARCHAR(150) NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    days INT NOT NULL,
+    budget DECIMAL(10, 2) NOT NULL,
+    currency VARCHAR(10) NOT NULL DEFAULT 'USD',
+    travel_style VARCHAR(50) NOT NULL,
+    interest VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS contacts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS ratings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    trip_id INT NULL,
+    rating_value INT NOT NULL,
+    review_text TEXT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (trip_id) REFERENCES trips(id) ON DELETE SET NULL
+);

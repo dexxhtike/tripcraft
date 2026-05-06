@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planner | TripCraft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-protected="true">
+    <div class="page-shell">
+      <nav class="navbar">
+        <a class="brand" href="index.html">TripCraft</a>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="planner.html">Planner</a>
+          <a href="destinations.html">Destinations</a>
+          <a href="contact.html">Contact</a>
+          <a class="admin-only hidden" href="admin-dashboard.html">Admin</a>
+        </div>
+        <div class="nav-auth">
+          <a class="button secondary nav-button auth-guest" href="login.html">Log In</a>
+          <a class="button primary nav-button auth-guest" href="register.html">Sign Up</a>
+          <span class="auth-user hidden" id="nav-user"></span>
+          <button class="button secondary nav-button auth-user hidden" id="logout-button" type="button">Log Out</button>
+        </div>
+      </nav>
+
+      <section class="page-hero">
+        <p class="eyebrow">Member Planner</p>
+        <h1>Build a personalized travel plan.</h1>
+        <p>
+          This page is protected by the sample login flow. Once a user signs in,
+          they can create a trip plan with budget and itinerary suggestions.
+        </p>
+      </section>
+
+      <section class="section planner">
+        <div class="section-heading">
+          <p class="eyebrow">Trip Planner</p>
+          <h2>Create your next trip in minutes</h2>
+        </div>
+
+        <form class="planner-form" id="planner-form">
+          <label>
+            Destination
+            <input type="text" id="destination" placeholder="e.g. Seoul, South Korea" required />
+          </label>
+          <label>
+            Start Date
+            <input type="date" id="start-date" required />
+          </label>
+          <label>
+            End Date
+            <input type="date" id="end-date" required />
+          </label>
+          <label>
+            Total Budget
+            <input type="number" id="budget" placeholder="e.g. 800" required />
+          </label>
+          <label>
+            Currency
+            <select id="currency">
+              <option value="USD" selected>USD ($)</option>
+              <option value="MMK">MMK (Ks)</option>
+              <option value="THB">THB (Baht)</option>
+              <option value="EUR">EUR (Euro)</option>
+              <option value="JPY">JPY (Yen)</option>
+              <option value="SGD">SGD (S$)</option>
+            </select>
+          </label>
+          <label>
+            Travel Style
+            <select id="travel-style">
+              <option value="budget">Budget</option>
+              <option value="balanced" selected>Balanced</option>
+              <option value="comfort">Comfort</option>
+            </select>
+          </label>
+          <label>
+            Main Interest
+            <select id="interest">
+              <option value="culture" selected>Cultural Sites</option>
+              <option value="nature">Nature</option>
+              <option value="food">Food</option>
+              <option value="shopping">Shopping</option>
+            </select>
+          </label>
+          <button type="submit" class="button primary full-width">Generate Plan</button>
+        </form>
+
+        <section class="result-panel" id="result-panel" aria-live="polite">
+          <div class="result-placeholder" id="result-placeholder">
+            Fill in the form to generate a suggested trip summary, spending plan,
+            and day-by-day itinerary.
+          </div>
+
+          <div class="result-content hidden" id="result-content">
+            <div class="result-header">
+              <div>
+                <p class="eyebrow">Generated Plan</p>
+                <h3 id="result-title">Your Trip</h3>
+              </div>
+              <div class="trip-badge" id="trip-duration">0 days</div>
+            </div>
+
+            <div class="summary-grid">
+              <article class="summary-card">
+                <p class="summary-label">Recommended Daily Budget</p>
+                <h4 id="daily-budget">$0</h4>
+              </article>
+              <article class="summary-card">
+                <p class="summary-label">Hotel Estimate</p>
+                <h4 id="hotel-budget">$0</h4>
+              </article>
+              <article class="summary-card">
+                <p class="summary-label">Food + Activities</p>
+                <h4 id="activity-budget">$0</h4>
+              </article>
+            </div>
+
+            <div class="itinerary-layout">
+              <article class="itinerary-card">
+                <h4>Budget Breakdown</h4>
+                <ul id="budget-breakdown"></ul>
+              </article>
+              <article class="itinerary-card">
+                <h4>Suggested Itinerary</h4>
+                <ul id="itinerary-list"></ul>
+              </article>
+            </div>
+          </div>
+        </section>
+      </section>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

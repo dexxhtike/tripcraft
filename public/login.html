@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log In | TripCraft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <nav class="navbar">
+        <a class="brand" href="index.html">TripCraft</a>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="planner.html">Planner</a>
+          <a href="destinations.html">Destinations</a>
+          <a href="contact.html">Contact</a>
+          <a class="admin-only hidden" href="admin-dashboard.html">Admin</a>
+        </div>
+        <div class="nav-auth">
+          <a class="button secondary nav-button auth-guest" href="login.html">Log In</a>
+          <a class="button primary nav-button auth-guest" href="register.html">Sign Up</a>
+          <span class="auth-user hidden" id="nav-user"></span>
+          <button class="button secondary nav-button auth-user hidden" id="logout-button" type="button">Log Out</button>
+        </div>
+      </nav>
+
+      <section class="auth-layout">
+        <article class="info-card">
+          <p class="eyebrow">Welcome Back</p>
+          <h1>Log in to continue planning your trip.</h1>
+          <p class="helper-text">
+            This starter version uses simple browser storage for demo login.
+            Later, we can replace it with a real Node.js database login system.
+          </p>
+          <ul class="list-clean">
+            <li>Access the trip planner page</li>
+            <li>Keep the user name in the navigation bar</li>
+            <li>Log out safely from any page</li>
+          </ul>
+        </article>
+
+        <article class="auth-card">
+          <p class="eyebrow">Account Access</p>
+          <h2>Log In</h2>
+          <form class="auth-form" id="login-form">
+            <label>
+              Email
+              <input id="login-email" type="email" placeholder="you@example.com" required />
+            </label>
+            <label>
+              Password
+              <input id="login-password" type="password" placeholder="Enter your password" required />
+            </label>
+            <p class="status-message hidden" id="login-message"></p>
+            <button class="button primary" type="submit">Log In</button>
+          </form>
+          <p class="helper-text">
+            New user? <a href="register.html"><strong>Create an account here</strong></a>.
+          </p>
+        </article>
+      </section>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

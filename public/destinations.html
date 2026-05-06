@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destinations | TripCraft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <nav class="navbar">
+        <a class="brand" href="index.html">TripCraft</a>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="planner.html">Planner</a>
+          <a href="destinations.html">Destinations</a>
+          <a href="contact.html">Contact</a>
+          <a class="admin-only hidden" href="admin-dashboard.html">Admin</a>
+        </div>
+        <div class="nav-auth">
+          <a class="button secondary nav-button auth-guest" href="login.html">Log In</a>
+          <a class="button primary nav-button auth-guest" href="register.html">Sign Up</a>
+          <span class="auth-user hidden" id="nav-user"></span>
+          <button class="button secondary nav-button auth-user hidden" id="logout-button" type="button">Log Out</button>
+        </div>
+      </nav>
+
+      <section class="page-hero">
+        <p class="eyebrow">Explore Places</p>
+        <h1>Choose a destination that matches your travel style.</h1>
+        <p>
+          This page gives your final project a dedicated area for destination
+          discovery, which is useful when explaining your site structure.
+        </p>
+      </section>
+
+      <section class="section destinations">
+        <div class="section-heading">
+          <p class="eyebrow">Featured Destinations</p>
+          <h2>Ideas for your next adventure</h2>
+        </div>
+
+        <div class="destination-grid">
+          <article class="destination-card">
+            <span>Beach</span>
+            <h3>Bali</h3>
+            <p>Relaxing coastlines, cafés, temples, and scenic sunsets.</p>
+          </article>
+          <article class="destination-card">
+            <span>City</span>
+            <h3>Seoul</h3>
+            <p>Street food, nightlife, shopping districts, and modern culture.</p>
+          </article>
+          <article class="destination-card">
+            <span>History</span>
+            <h3>Rome</h3>
+            <p>Famous landmarks, museums, and unforgettable architecture.</p>
+          </article>
+          <article class="destination-card">
+            <span>Nature</span>
+            <h3>Chiang Mai</h3>
+            <p>Mountain views, temples, cafés, and calm weekend escapes.</p>
+          </article>
+          <article class="destination-card">
+            <span>Food</span>
+            <h3>Osaka</h3>
+            <p>Excellent local cuisine, night streets, and energetic neighborhoods.</p>
+          </article>
+          <article class="destination-card">
+            <span>Luxury</span>
+            <h3>Dubai</h3>
+            <p>Premium hotels, entertainment, shopping, and skyline experiences.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | TripCraft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <nav class="navbar">
+        <a class="brand" href="index.html">TripCraft</a>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="planner.html">Planner</a>
+          <a href="destinations.html">Destinations</a>
+          <a href="contact.html">Contact</a>
+          <a class="admin-only hidden" href="admin-dashboard.html">Admin</a>
+        </div>
+        <div class="nav-auth">
+          <a class="button secondary nav-button auth-guest" href="login.html">Log In</a>
+          <a class="button primary nav-button auth-guest" href="register.html">Sign Up</a>
+          <span class="auth-user hidden" id="nav-user"></span>
+          <button class="button secondary nav-button auth-user hidden" id="logout-button" type="button">Log Out</button>
+        </div>
+      </nav>
+
+      <section class="page-hero">
+        <p class="eyebrow">Contact Page</p>
+        <h1>Get in touch with the TripCraft team.</h1>
+        <p>
+          A separate contact page makes your project structure more complete and
+          gives you one more page to present during your final demo.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Reach Out</p>
+          <h2>Contact information and message form</h2>
+        </div>
+
+        <div class="contact-grid">
+          <article>
+            <h3>Email</h3>
+            <p class="helper-text">support@tripcraft.demo</p>
+          </article>
+          <article>
+            <h3>Phone</h3>
+            <p class="helper-text">+95 9 123 456 789</p>
+          </article>
+          <article>
+            <h3>Office</h3>
+            <p class="helper-text">University Final Project Showcase</p>
+          </article>
+        </div>
+
+        <section class="auth-layout">
+          <article class="info-card">
+            <p class="eyebrow">Need Help?</p>
+            <h2>Share your travel question.</h2>
+            <p class="helper-text">
+              This form is ready for frontend demonstration now, and later we can
+              connect it to a Node.js backend or email service.
+            </p>
+          </article>
+
+          <article class="auth-card">
+            <form class="auth-form" id="contact-form">
+              <label>
+                Name
+                <input type="text" id="contact-name" placeholder="Your name" required />
+              </label>
+              <label>
+                Email
+                <input type="email" id="contact-email" placeholder="you@example.com" required />
+              </label>
+              <label>
+                Message
+                <textarea id="contact-message" placeholder="Write your message here" required></textarea>
+              </label>
+              <p class="status-message hidden" id="contact-status"></p>
+              <button class="button primary" type="submit">Send Message</button>
+            </form>
+          </article>
+        </section>
+      </section>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
