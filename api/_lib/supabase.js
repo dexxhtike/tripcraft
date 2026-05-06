@@ -4,7 +4,9 @@ function getEnv(name) {
   const value = process.env[name];
 
   if (!value) {
-    throw new Error(`Missing environment variable: ${name}`);
+    const error = new Error(`Project setup is incomplete. Missing environment variable: ${name}. Add it in Vercel Environment Variables and redeploy.`);
+    error.status = 500;
+    throw error;
   }
 
   return value;
@@ -42,10 +44,20 @@ async function supabaseRequest(path, { method = "GET", query, body, headers = {}
   });
 
   const text = await response.text();
-  const data = text ? JSON.parse(text) : null;
+  let data = null;
+
+  if (text) {
+    try {
+      data = JSON.parse(text);
+    } catch (_error) {
+      data = { message: text };
+    }
+  }
 
   if (!response.ok) {
-    const message = data && data.message ? data.message : "Supabase request failed.";
+    const message =
+      (data && (data.message || data.error_description || data.error)) ||
+      "Supabase request failed.";
     const error = new Error(message);
     error.status = response.status;
     error.details = data;
@@ -153,8 +165,11 @@ async function saveContact({ name, email, message }) {
 }
 
 async function saveTrip({ userId, destination, startDate, endDate, days, budget, travelStyle, interest, currency }) {
-  await supabaseRequest("/rest/v1/trips", {
+  const rows = await supabaseRequest("/rest/v1/trips", {
     method: "POST",
+    headers: {
+      Prefer: "return=representation"
+    },
     body: {
       user_id: userId,
       destination,
@@ -167,10 +182,29 @@ async function saveTrip({ userId, destination, startDate, endDate, days, budget,
       currency: currency || "USD"
     }
   });
+
+  return Array.isArray(rows) ? rows[0] : rows;
+}
+
+async function saveRating({ userId, tripId = null, ratingValue, reviewText }) {
+  const rows = await supabaseRequest("/rest/v1/ratings", {
+    method: "POST",
+    headers: {
+      Prefer: "return=representation"
+    },
+    body: {
+      user_id: userId,
+      trip_id: tripId,
+      rating_value: ratingValue,
+      review_text: reviewText || null
+    }
+  });
+
+  return Array.isArray(rows) ? rows[0] : rows;
 }
 
 async function getDashboardData() {
-  const [users, trips, messages] = await Promise.all([
+  const [users, trips, messages, ratings] = await Promise.all([
     supabaseRequest("/rest/v1/users", {
       query: {
         select: "id,name,email,role,created_at",
@@ -189,16 +223,24 @@ async function getDashboardData() {
         select: "id,name,email,message,created_at",
         order: "id.desc"
       }
+    }),
+    supabaseRequest("/rest/v1/ratings", {
+      query: {
+        select: "id,user_id,trip_id,rating_value,review_text,created_at",
+        order: "id.desc"
+      }
     })
   ]);
 
   const userMap = new Map(users.map((user) => [user.id, user]));
+  const tripMap = new Map(trips.map((trip) => [trip.id, trip]));
 
   return {
     counts: {
       users: users.length,
       trips: trips.length,
-      messages: messages.length
+      messages: messages.length,
+      ratings: ratings.length
     },
     users: users.map((user) => ({
       id: user.id,
@@ -223,6 +265,14 @@ async function getDashboardData() {
       email: message.email,
       message: message.message,
       createdAt: message.created_at
+    })),
+    ratings: ratings.map((rating) => ({
+      id: rating.id,
+      userName: userMap.get(rating.user_id)?.name || "Unknown User",
+      tripDestination: tripMap.get(rating.trip_id)?.destination || null,
+      ratingValue: rating.rating_value,
+      reviewText: rating.review_text,
+      createdAt: rating.created_at
     }))
   };
 }
@@ -233,6 +283,7 @@ module.exports = {
   getUsersByIds,
   hashPassword,
   readJsonBody,
+  saveRating,
   saveContact,
   saveTrip,
   sendJson,

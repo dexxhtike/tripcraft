@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map | TripCraft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+  </head>
+  <body>
+    <div class="page-shell">
+      <nav class="navbar">
+        <a class="brand" href="index.html">TripCraft</a>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="planner.html">Planner</a>
+          <a href="map.html">Map</a>
+          <a href="destinations.html">Destinations</a>
+          <a href="contact.html">Contact</a>
+          <a class="admin-only hidden" href="admin-dashboard.html">Admin</a>
+        </div>
+        <div class="nav-auth">
+          <a class="button secondary nav-button auth-guest" href="login.html">Log In</a>
+          <a class="button primary nav-button auth-guest" href="register.html">Sign Up</a>
+          <span class="auth-user hidden" id="nav-user"></span>
+          <button class="button secondary nav-button auth-user hidden" id="logout-button" type="button">Log Out</button>
+        </div>
+      </nav>
+
+      <section class="page-hero">
+        <p class="eyebrow">Interactive Map</p>
+        <h1>Explore destinations visually with TripCraft.</h1>
+        <p>
+          Search places, focus destination markers, and book directly from the map page.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="map-layout">
+          <article class="map-panel">
+            <p class="eyebrow">Map Tools</p>
+            <h2>Search and preview places</h2>
+            <p class="helper-text">
+              Type a destination name and the map will move to that location. Popular destinations are already marked.
+            </p>
+
+            <div class="map-tools">
+              <input type="text" id="map-search-input" placeholder="Search a place, e.g. Tokyo, Japan" />
+              <div class="map-actions">
+                <button class="button primary" id="map-search-button" type="button">Search Map</button>
+                <button class="button secondary" id="map-reset-button" type="button">Reset View</button>
+              </div>
+              <p class="status-message hidden" id="map-status"></p>
+            </div>
+
+            <ul class="list-clean">
+              <li><strong>Bali</strong> for beach escapes</li>
+              <li><strong>Seoul</strong> for city exploration</li>
+              <li><strong>Rome</strong> for history and architecture</li>
+              <li><strong>Chiang Mai</strong> for nature and calm travel</li>
+              <li><strong>Osaka</strong> for food experiences</li>
+              <li><strong>Dubai</strong> for luxury travel</li>
+            </ul>
+          </article>
+
+          <article class="map-card">
+            <div id="tripcraft-map"></div>
+          </article>
+        </div>
+
+        <section class="auth-layout planner-followup" id="map-booking">
+          <article class="info-card">
+            <p class="eyebrow">Book From Map</p>
+            <h2>Save your trip without leaving this page.</h2>
+            <p class="helper-text">
+              Click a marker, search a location, or choose a popular place below. The destination will fill automatically.
+            </p>
+          </article>
+
+          <article class="auth-card">
+            <form class="auth-form" id="map-booking-form">
+              <label>
+                Destination
+                <input type="text" id="map-booking-destination" placeholder="Choose a place from the map" required />
+              </label>
+              <label>
+                Start Date
+                <input type="date" id="map-start-date" required />
+              </label>
+              <label>
+                End Date
+                <input type="date" id="map-end-date" required />
+              </label>
+              <label>
+                Total Budget
+                <input type="number" id="map-budget" placeholder="e.g. 1200" required />
+              </label>
+              <label>
+                Currency
+                <select id="map-currency">
+                  <option value="USD" selected>USD ($)</option>
+                  <option value="MMK">MMK (Ks)</option>
+                  <option value="THB">THB (Baht)</option>
+                  <option value="EUR">EUR (Euro)</option>
+                  <option value="JPY">JPY (Yen)</option>
+                  <option value="SGD">SGD (S$)</option>
+                </select>
+              </label>
+              <label>
+                Travel Style
+                <select id="map-travel-style">
+                  <option value="budget">Budget</option>
+                  <option value="balanced" selected>Balanced</option>
+                  <option value="comfort">Comfort</option>
+                </select>
+              </label>
+              <label>
+                Main Interest
+                <select id="map-interest">
+                  <option value="culture" selected>Cultural Sites</option>
+                  <option value="nature">Nature</option>
+                  <option value="food">Food</option>
+                  <option value="shopping">Shopping</option>
+                </select>
+              </label>
+              <p class="status-message hidden" id="map-booking-status"></p>
+              <button class="button primary" type="submit">Book From Map</button>
+            </form>
+          </article>
+        </section>
+
+        <div class="section-heading" style="margin-top: 32px;">
+          <p class="eyebrow">Popular Places</p>
+          <h2>See top destinations in pictures</h2>
+        </div>
+
+        <div class="map-gallery">
+          <article class="place-photo-card">
+            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80" alt="Bali beach scenery" />
+            <div class="content">
+              <h3>Bali</h3>
+              <p class="helper-text">Tropical beaches, temples, and sunset escapes.</p>
+              <div class="destination-actions">
+                <a class="button secondary" href="map.html?place=Bali">Focus map</a>
+                <button class="button primary" type="button" onclick="selectDestinationForBooking('Bali')">Book here</button>
+              </div>
+            </div>
+          </article>
+          <article class="place-photo-card">
+            <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&w=1200&q=80" alt="Seoul skyline" />
+            <div class="content">
+              <h3>Seoul</h3>
+              <p class="helper-text">A modern city with shopping, food, and nightlife.</p>
+              <div class="destination-actions">
+                <a class="button secondary" href="map.html?place=Seoul">Focus map</a>
+                <button class="button primary" type="button" onclick="selectDestinationForBooking('Seoul')">Book here</button>
+              </div>
+            </div>
+          </article>
+          <article class="place-photo-card">
+            <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80" alt="Dubai skyline" />
+            <div class="content">
+              <h3>Dubai</h3>
+              <p class="helper-text">Luxury travel, iconic skyline, and premium attractions.</p>
+              <div class="destination-actions">
+                <a class="button secondary" href="map.html?place=Dubai">Focus map</a>
+                <button class="button primary" type="button" onclick="selectDestinationForBooking('Dubai')">Book here</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>

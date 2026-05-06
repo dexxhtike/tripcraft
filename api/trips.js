@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
       return sendJson(res, 400, { message: "Trip data is incomplete." });
     }
 
-    await saveTrip({
+    const trip = await saveTrip({
       userId,
       destination,
       startDate,
@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
       currency
     });
 
-    return sendJson(res, 201, { message: "Trip saved successfully." });
+    return sendJson(res, 201, { message: "Trip saved successfully.", trip });
   } catch (error) {
     return sendJson(res, error.status || 500, {
       message: error.status ? error.message : "Could not save trip."

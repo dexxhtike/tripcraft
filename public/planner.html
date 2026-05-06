@@ -19,6 +19,7 @@
         <div class="nav-links">
           <a href="index.html">Home</a>
           <a href="planner.html">Planner</a>
+          <a href="map.html">Map</a>
           <a href="destinations.html">Destinations</a>
           <a href="contact.html">Contact</a>
           <a class="admin-only hidden" href="admin-dashboard.html">Admin</a>
@@ -35,8 +36,8 @@
         <p class="eyebrow">Member Planner</p>
         <h1>Build a personalized travel plan.</h1>
         <p>
-          This page is protected by the sample login flow. Once a user signs in,
-          they can create a trip plan with budget and itinerary suggestions.
+          This page is protected by the login flow. Once a user signs in,
+          they can create a trip plan, save it, and rate the booking after saving.
         </p>
       </section>
 
@@ -135,6 +136,37 @@
               </article>
             </div>
           </div>
+        </section>
+
+        <section class="auth-layout hidden planner-followup" id="booking-rating-section">
+          <article class="info-card">
+            <p class="eyebrow">Rate After Booking</p>
+            <h2>Tell us how your booking experience was.</h2>
+            <p class="helper-text" id="booking-rating-trip"></p>
+          </article>
+
+          <article class="auth-card">
+            <form class="auth-form" id="booking-rating-form">
+              <input type="hidden" id="booking-rating-trip-id" />
+              <label>
+                Rating
+                <select id="booking-rating-value" required>
+                  <option value="">Select a score</option>
+                  <option value="5">5 - Excellent</option>
+                  <option value="4">4 - Very Good</option>
+                  <option value="3">3 - Good</option>
+                  <option value="2">2 - Fair</option>
+                  <option value="1">1 - Poor</option>
+                </select>
+              </label>
+              <label>
+                Review
+                <textarea id="booking-rating-review" placeholder="Write a short review about this booking"></textarea>
+              </label>
+              <p class="status-message hidden" id="booking-rating-status"></p>
+              <button class="button primary" type="submit">Submit Booking Rating</button>
+            </form>
+          </article>
         </section>
       </section>
     </div>

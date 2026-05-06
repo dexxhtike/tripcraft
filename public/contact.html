@@ -19,6 +19,7 @@
         <div class="nav-links">
           <a href="index.html">Home</a>
           <a href="planner.html">Planner</a>
+          <a href="map.html">Map</a>
           <a href="destinations.html">Destinations</a>
           <a href="contact.html">Contact</a>
           <a class="admin-only hidden" href="admin-dashboard.html">Admin</a>
@@ -35,8 +36,7 @@
         <p class="eyebrow">Contact Page</p>
         <h1>Get in touch with the TripCraft team.</h1>
         <p>
-          A separate contact page makes your project structure more complete and
-          gives you one more page to present during your final demo.
+          Send messages to the TripCraft team and also leave a service rating stored in the database.
         </p>
       </section>
 
@@ -66,8 +66,7 @@
             <p class="eyebrow">Need Help?</p>
             <h2>Share your travel question.</h2>
             <p class="helper-text">
-              This form is ready for frontend demonstration now, and later we can
-              connect it to a Node.js backend or email service.
+              This form is connected to the deployed backend so your messages can be reviewed from the admin side.
             </p>
           </article>
 
@@ -87,6 +86,38 @@
               </label>
               <p class="status-message hidden" id="contact-status"></p>
               <button class="button primary" type="submit">Send Message</button>
+            </form>
+          </article>
+        </section>
+
+        <section class="auth-layout planner-followup">
+          <article class="info-card">
+            <p class="eyebrow">Service Rating</p>
+            <h2>Rate your overall experience.</h2>
+            <p class="helper-text">
+              Logged-in users can send a score and review, and admins can review it from the dashboard.
+            </p>
+          </article>
+
+          <article class="auth-card">
+            <form class="auth-form" id="rating-form">
+              <label>
+                Rating
+                <select id="service-rating" required>
+                  <option value="">Select a score</option>
+                  <option value="5">5 - Excellent</option>
+                  <option value="4">4 - Very Good</option>
+                  <option value="3">3 - Good</option>
+                  <option value="2">2 - Fair</option>
+                  <option value="1">1 - Poor</option>
+                </select>
+              </label>
+              <label>
+                Review
+                <textarea id="service-review" placeholder="Write a short review about the website"></textarea>
+              </label>
+              <p class="status-message hidden" id="rating-status"></p>
+              <button class="button primary" type="submit">Submit Rating</button>
             </form>
           </article>
         </section>
